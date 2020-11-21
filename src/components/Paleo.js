@@ -14,7 +14,7 @@ const Paleo = (props) => {
         axios.get(API_URL + "Ornithischia&show=attr").then((newDino) => {
             console.log(newDino);
             console.log(newDino.data.records[0].nam);
-            setDino(newDino.data.records[0].nam);
+            setDino("you discovered the " + newDino.data.records[0].nam);
         });
     }
 
