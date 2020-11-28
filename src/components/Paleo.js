@@ -24,15 +24,15 @@ const Paleo = (props) => {
     }
 
     const handleSubmit = (event) => {
-        var dinoName = ""
-        var dinoStatus = ""
+        var dino = ""
+        var eating_habits = ""
         var playerStatus = 404
-        var playerName = ""
+        var pro = ""
         axios.get(name).then((newName) => {
             console.log(newName.data);
             console.log(newName.data.data.stats.all.overall.wins);
             wins = newName.data.data.stats.all.overall.wins;
-            playerName = newName.data.data.account.name;
+            pro = newName.data.data.account.name;
             playerStatus = newName.status
         });
         setTimeout(function () {
@@ -40,12 +40,12 @@ const Paleo = (props) => {
             if (playerStatus === 200) {
             axios.get(DINO_API_URL + wins + "&show=class,ecospace,ttaph,etbasis,attr").then((newerDino) => {
                 console.log(wins);
-                dinoName = newerDino.data.records[0].nam;
-                dinoStatus = newerDino.data.records[0].jdt;
-                if (dinoStatus === undefined) {
-                    setNameRep(playerName + " has won " + wins + " games! They win so much, you could call them a " + dinoName + "! We don't know that dinosaur's eating habits!");
+                dino = newerDino.data.records[0].nam;
+                eating_habits = newerDino.data.records[0].jdt;
+                if (eating_habits === undefined) {
+                    setNameRep(pro + " has won " + wins + " games! They win so much, you could call them a " + dino + "! We don't know that dinosaur's eating habits!");
                 } else {
-                    setNameRep(playerName + " has won " + wins + " games! They win so much, you could call them a " + dinoName + "! A real " + dinoStatus + "!");
+                    setNameRep(pro + " has won " + wins + " games! They win so much, you could call them a " + dino + "! A real " + eating_habits + "!");
                 }
             })
         } else {
